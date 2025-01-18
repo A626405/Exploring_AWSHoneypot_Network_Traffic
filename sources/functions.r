@@ -1,44 +1,21 @@
 #Main Functions
-
-rsf<-function(){
-  gc()
-  rm(list=ls(all.names = T,envir = as.environment(".GlobalEnv")),envir = as.environment(".GlobalEnv"),inherits = T)
-  gc()
-}
-#-----------------------------------------------------------
-rss <- function() {
-  cat("\014")
-  gc()  
-  all_objs <- ls(all.names = TRUE, envir = .GlobalEnv)
-  objs_to_remove <- setdiff(all_objs, "rs")
-  rm(list = objs_to_remove, envir = .GlobalEnv)
-  cat("\014")
-  gc()
-}
 #-----------------------------------------------------------
 rs <- function() {
+  
+  system("cmd /c cls")
   cat("\014")
-  gc()
+  .rs.api.terminalKill(.rs.api.terminalList())
+  gc()  
+  
   all_objs <- ls(all.names = TRUE, envir = .GlobalEnv)
-  obs_keep<-c("rs","maindf")
+  obs_keep<-c("rs","cleaned")
   objs_to_remove <- setdiff(all_objs,obs_keep)
   rm(list = objs_to_remove, envir = .GlobalEnv)
+  
+  system("cmd /c cls")
   cat("\014")
-  gc()
+  gc(F,T,T)
 }
-#-----------------------------------------------------------
-'rss <- function(.GlobalEnv) {
-  rss <- function() {
-    cat("\014")
-    gc()
-    all_objs <- ls(all.names = TRUE, envir = .GlobalEnv)
-    obs_keep<-c("rs","cleaned")
-    objs_to_remove <- setdiff(all_objs,obs_keep)
-    rm(list = objs_to_remove, envir = .GlobalEnv)
-    cat("\014")
-    gc()
-  }
-}'
 #-----------------------------------------------------------------------------------------------------
 #Function #1: Checks all Cols of A DF for: Class, Count NA/NULL/NaN, Is Categorical?, Count Unique Values
 gc(verbose=F,full=F,reset = T)
