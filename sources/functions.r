@@ -1,5 +1,3 @@
-#Main Functions
-#-----------------------------------------------------------
 rs <- function() {
   
   system("cmd /c cls")
@@ -16,10 +14,6 @@ rs <- function() {
   cat("\014")
   gc(F,T,T)
 }
-#-----------------------------------------------------------------------------------------------------
-#Function #1: Checks all Cols of A DF for: Class, Count NA/NULL/NaN, Is Categorical?, Count Unique Values
-gc(verbose=F,full=F,reset = T)
-options(verbose = F,catch.script.errors = T,echo=F)
 
 dfcheck <- function(dataframe, threshold) {
   require(parallel)
@@ -55,8 +49,7 @@ dfcheck <- function(dataframe, threshold) {
   print(results_df)
   stopCluster(cl)
 }
-#-----------------------------------------------------------------------------------------------------
-#Function #2: Loads Libraries W/ Multithreaded Processing
+
 load_lb<-function(){
   num_cores<-parallel::detectCores()-1
   cl<-Parallel::makeCluster(num_cores)
@@ -71,4 +64,3 @@ load_lb<-function(){
   parallel::stopCluster(cl)
   cat("All specified libraries are loaded into the global environment.\n")
 }
-#-----------------------------------------------------------------------------------------------------
