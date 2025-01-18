@@ -26,11 +26,13 @@ portmatchdata1$port <- as.numeric(portmatchdata1$port)
 port<-as.numeric(port)
 
 rplceindex<- which(as.character(portmatchdata1$protocol) == "ICMP")
-portmatchdata1$service[rplceindex] <- "ICMP"
+#portmatchdata1$service[rplceindex] <- "ICMP"
 portmatchdata1$protocol[rplceindex] <- "ICMP"
 
 rplceindex<- which(portmatchdata1$Ports == "0")
-portmatchdata1$service[rplceindex]<-"Reserved"
+#portmatchdata1$service[rplceindex]<-"Reserved"
 portmatchdata1$protocol[rplceindex]<-"Reserved"
 
-portmatchdata11 <- portmatchdata1 |> group_by(port) |> arrange(.by_group = T)
+#portmatchdata1 <- portmatchdata1 |> group_by(port) |> arrange(.by_group = T)
+
+save(portmatchdata1,"data/internal/rda/FullPortRankings.RDA",compress="gzip")
